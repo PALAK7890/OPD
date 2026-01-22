@@ -8,7 +8,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/',res,req=>{
-    res.send('opd running')
+    res.send('opd is running')
 
 })
 export default app;
