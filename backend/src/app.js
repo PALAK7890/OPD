@@ -11,7 +11,7 @@ app.use(express.json())
 app.use("/api/auth",authRoutes)
 app.use("/api/doctor",doctorRoutes)
 
-app.get('/',res,req=>{
+app.get('/',(res,req)=>{
     res.send('opd is running')
 
 })
