@@ -1,38 +1,30 @@
-import { useNavigate } from "react-router-dom"
-import { useAuth } from "../context/auth"
-import "../styles/doc_nav.css"
+import { useNavigate } from "react-router-dom";
+import "../styles/doc_nav.css";
 
 export default function DocNavbar() {
-  const navigate = useNavigate()
-  const { user, logout } = useAuth()
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  const handleLogout = () => {
-    logout()
-    navigate("/login")
+  if (!user) return null;
+
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login");
   };
 
   return (
     <aside className="navbar">
-      <div className="navbar-top">
-        <h2 className="logo">MediStack</h2>
+      <h2 className="logo">MediStack</h2>
+      <nav className="nav-links">
+        <span onClick={() => navigate("/doctor/dashboard")}>Dashboard</span>
+        <span>Appointments</span>
+        <span>Patients</span>
+        <span>Profile</span>
+      </nav>
 
-        <nav className="nav-links">
-          <span onClick={() => navigate(`/${user.role}/dashboard`)}>
-            Dashboard
-          </span>
-          {user.role === "doctor" && (
-            <>
-              <span>Appointments</span>
-              <span>Patients</span>
-            </>
-          )}
-          <span>Profile</span>
-        </nav>
-      </div>
-
-      <button className="logout-btn" onClick={handleLogout}>
+      <button className="logout-btn" onClick={logout}>
         Logout
       </button>
     </aside>
-  )
+  );
 }
