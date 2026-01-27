@@ -41,7 +41,7 @@ export default function Login() {
       setToast(true);
 
       setTimeout(() => {
-        if (data.user.role === "doctor") navigate("/doctor/dashboard");
+        if (data.user.role === "doctor") navigate("/doctor_dash");
         else if (data.user.role === "admin") navigate("/admin/dashboard");
         else navigate("/patient/dashboard");
       }, 1500);
@@ -79,15 +79,33 @@ export default function Login() {
             required
           />
 
-          <select
-            className="role-select"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="patient">Patient</option>
-            <option value="doctor">Doctor</option>
-            <option value="admin">Admin</option>
-          </select>
+
+<div className="role-cards">
+  <div
+    className={`role-card ${role === "patient" ? "active" : ""}`}
+    onClick={() => setRole("patient")}
+  >
+    <div className="role-emoji">🧑‍⚕️</div>
+    <span>Patient</span>
+  </div>
+
+  <div
+    className={`role-card ${role === "doctor" ? "active" : ""}`}
+    onClick={() => setRole("doctor")}
+  >
+    <div className="role-emoji">👨‍⚕️</div>
+    <span>Doctor</span>
+  </div>
+
+  <div
+    className={`role-card ${role === "admin" ? "active" : ""}`}
+    onClick={() => setRole("admin")}
+  >
+    <div className="role-emoji">🛠️</div>
+    <span>Admin</span>
+  </div>
+</div>
+
 
           <div className="forgot">
             <span onClick={() => navigate("/forgot-password")}>

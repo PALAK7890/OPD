@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/d_dash.css";
-import Navbar from "./doc_nav";
+import DocNavbar from "./doc_nav";
 
 export default function DoctorDash() {
   const navigate = useNavigate();
@@ -9,43 +9,43 @@ export default function DoctorDash() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-//   useEffect(() => {
-//     const fetchAppointments = async () => {
-//       try {
-//         const token = localStorage.getItem("token");
-        // if (!token) {
-        //   navigate("/login");
-        //   return;
-        // }
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          navigate("/login");
+          return;
+        }
 
-//         const res = await fetch(
-//           `${import.meta.env.VITE_API_URL}/api/doctor/appointments`,
-//           {
-//             headers: {
-//               Authorization: `Bearer ${token}`,
-//             },
-//           }
-//         );
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/doctor/appointments`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-//         if (!res.ok) {
-//           throw new Error("Failed to fetch appointments");
-//         }
+        if (!res.ok) {
+          throw new Error("Failed to fetch appointments");
+        }
 
-//         const data = await res.json();
-//         setAppointments(data);
-//       } catch (err) {
-//         setError(err.message);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
+        const data = await res.json();
+        setAppointments(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-//     fetchAppointments();
-//   }, [navigate]);
+    fetchAppointments();
+  }, [navigate]);
 
   return (
     <div className="doctor_dashboard">
-      <Navbar />
+      <DocNavbar/>
 
       <main className="content">
         <h1>Doctor Dashboard</h1>
