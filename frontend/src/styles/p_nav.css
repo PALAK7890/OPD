@@ -1,0 +1,41 @@
+.patient-navbar {
+  height: 60px;
+  background: #1e90ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.nav-center input {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: none;
+  width: 250px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.patient-profile {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.patient-profile img {
+  border-radius: 50%;
+}
+
+.logout-btn {
+  background: crimson;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
